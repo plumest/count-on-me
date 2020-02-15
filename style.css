@@ -1,0 +1,44 @@
+:root {
+    --red: rgb(230, 43, 30);
+    --white: #fff;
+    --lightText: #999;
+    --text: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+
+.isRed {
+    color: var(--red);
+}
+
+.isWhite {
+    color: var(--white);
+}
+
+.isLight {
+    color: var(--lightText);
+}
+
+.isText {
+    color: var(--text);
+}
+
+.bgRed {
+    background-color: var(--red);
+}
+
+#showtime {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    text-align: center;
+}
