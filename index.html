@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Count on Me</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header id="header">
     <nav class="navbar navbar-light bg-white navbar-expand-md fixed-top">
         <a class="navbar-brand isRed" href="#">
-            <!-- <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""> -->
-            <span style="color: rgb(230, 43, 30)">TED</span><span style="color: #999">xKasetsartU</span>
+            <h1><span class="isRed">TEDx</span><span>KasetsartU</span></h1>
+            <p><span class="isRed subTitle">x</span> = independently organized TED event</p>
         </a>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,12 +21,10 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" id="startTimer" href="#">Start <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="startTimer" href="#">Start</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item displayNone" id="pause-resume">
                     <a class="nav-link" id="pause" href="#">Pause</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link displayNone" id="resume" href="#">Resume</a>
                 </li>
                 <li class="nav-item">
@@ -41,14 +38,11 @@
 <main id="main">
     <section id="showtime">
         <h1 id="timer">
-            00 : 00 : 00
+            00 : 00
         </h1>
     </section>
 </main>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
 </html>

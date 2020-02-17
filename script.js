@@ -1,3 +1,10 @@
+// Set time in minutes
+var minCounter = 18;
+// Set time in second
+var initialTime = minCounter * 60;
+
+var initialDisplay = `00 : 00`;
+
 var timerElement = document.getElementById("timer");
 var timer;
 
@@ -33,9 +40,10 @@ function showTime() {
 }
 
 function setTime() {
-    window.timer = 10;
+    window.timer = initialTime;
     window.counting = setInterval(showTime, 1000);
     timerElement.classList.remove("timerAnimation", "isRed");
+    pauseResumeBox.classList.remove("displayNone");
 }
 
 function pause() {
@@ -52,14 +60,19 @@ function resume() {
 
 function stopTimer() {
     clearInterval(counting);
-    timerElement.innerHTML = `00 : 00 : 00`;
+    window.timer = initialTime;
+    timerElement.innerHTML = initialDisplay;
     timerElement.classList.remove("timerAnimation", "isRed");
+    pauseResumeBox.classList.add("displayNone");
+    elPause.classList.remove("displayNone");
+    elResume.classList.add("displayNone");
 }
 
 var elStartTimer = document.getElementById("startTimer");
 var elStopTimer = document.getElementById("stopTimer");
 var elPause = document.getElementById("pause");
 var elResume = document.getElementById("resume");
+var pauseResumeBox = document.getElementById("pause-resume");
 
 if (elStartTimer.addEventListener) {
     elStartTimer.addEventListener("click", setTime, false);
