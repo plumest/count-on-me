@@ -1,5 +1,5 @@
 // Set time in minutes
-var minCounter = 18;
+var minCounter = 1;
 // Set time in second
 var initialTime = minCounter * 60;
 
