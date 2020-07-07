@@ -22,14 +22,14 @@
                     <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" id="startTimer" href="#">Start</a>
+                            <a class="nav-link" id="startTimer" href="#" @click="startCountDown">Start</a>
                         </li>
                         <li class="nav-item displayNone" id="pause-resume">
                             <a class="nav-link" id="pause" href="#">Pause</a>
                             <a class="nav-link displayNone" id="resume" href="#">Resume</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="stopTimer" href="#">Stop</a>
+                            <a class="nav-link" id="stopTimer" href="#" @click="clearCountDown">Stop</a>
                         </li>
                     </ul>
                 </div>
@@ -38,21 +38,17 @@
         
         <main id="main">
             <section id="showtime">
-                <!-- <h1 id="timer" v-if="!isEditable" @click="setTime">{{ hours }}h : {{ minutes }}m : {{ seconds }}s</h1> -->
                 <div class="" v-if="!isEditable">
                     <div @click="handleEditable">
-                        <span class="" tabindex="0">{{ digit_1 }}</span>
-                        <span class="" tabindex="0">{{ digit_2 }}</span>
-                        <span class="">h</span>
-                        <span class="" tabindex="0">{{ digit_3 }}</span>
-                        <span class="" tabindex="0">{{ digit_4 }}</span>
-                        <span class="">m</span>
-                        <span class="" tabindex="0">{{ digit_5 }}</span>
-                        <span class="" tabindex="0">{{ digit_6 }}</span>
+                        <span class="" tabindex="0" v-if="hours">{{ hours }}</span>
+                        <span class="" v-if="hours">h</span>
+                        <span class="" tabindex="0" v-if="minutes">{{ minutes }}</span>
+                        <span class="" v-if="minutes">m</span>
+                        <span class="" tabindex="0">{{ seconds }}</span>
                         <span class="">s</span>
                     </div>
-                    <button @click="openFullscreen" v-if="!isFullScreen">Open fullscreen</button>
-                    <button @click="openFullscreen" v-else>Close fullscreen</button>
+                    <button @click="openFullscreen">Open fullscreen</button>
+                    <button @click="closeFullscreen">Close fullscreen</button>
                 </div>
                 <input 
                     v-else
@@ -75,17 +71,14 @@
         el: '#app',
         data: {
             isEditable: false,
-            seconds: '000000',
-            digit_1: 0,
-            digit_2: 0,
-            digit_3: 0,
-            digit_4: 0,
-            digit_5: 0,
-            digit_6: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            interval: '',
         },
         computed: {
             timer: function() {
-                return `${this.digit_1}${this.digit_2}h ${this.digit_3}${this.digit_4}m ${this.digit_5}${this.digit_6}s`;
+                return `${this.hours}h ${this.minutes}m ${this.seconds}s`;
             }
         },
         methods: {
@@ -93,15 +86,17 @@
                 while (e.target.value.length < 6) {
                     e.target.value = `0${e.target.value}`;
                 }
-                this.digit_1 = e.target.value[0];
-                this.digit_2 = e.target.value[1];
-                this.digit_3 = e.target.value[2];
-                this.digit_4 = e.target.value[3];
-                this.digit_5 = e.target.value[4];
-                this.digit_6 = e.target.value[5];
+                this.hours = Number(e.target.value[0])*10 + Number(e.target.value[1]);
+                this.minutes = Number(e.target.value[2])*10 + Number(e.target.value[3]);
+                this.seconds = Number(e.target.value[4])*10 + Number(e.target.value[5]);
+                if (this.minutes > 59) this.minutes = 59;
+                if (this.seconds > 59) this.seconds = 59;
                 this.isEditable = false;
             },
-            handleEditable: function() { this.isEditable = !this.isEditable },
+            handleEditable: function() { 
+                this.isEditable = !this.isEditable;
+                this.clearCountDown();
+            },
             openFullscreen: function() {
                 var elem = document.documentElement;
                 
@@ -128,10 +123,16 @@
                     document.msExitFullscreen();
                 }
             },
-            start: function() {
-                // setInterval(() => {
-                //     this.
-                // }, 1000)
+            startCountDown: function() {
+                this.interval = setInterval(() => {
+                    if (this.seconds > 0) this.seconds--;
+                    else if (this.minutes > 0) this.minutes--;
+                    else if (this.hours > 0) this.hours--;
+                    if (!this.hours && !this.minutes && !this.seconds) this.clearCountDown();
+                }, 1000);
+            },
+            clearCountDown: function() {
+                clearInterval(this.interval);
             }
         }
     })
