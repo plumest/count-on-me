@@ -40,23 +40,39 @@
                 <div class="countDown" v-if="!isEditable">
                     <div @click="handleEditable">
                         <span class="" tabindex="0" v-if="hours">{{ hours }}</span>
-                        <span class="" v-if="hours">h</span>
+                        <span class="timeUnit" v-if="hours">h</span>
                         <span class="" tabindex="0" v-if="minutes">{{ minutes }}</span>
-                        <span class="" v-if="minutes">m</span>
+                        <span class="timeUnit" v-if="minutes">m</span>
                         <span class="" tabindex="0">{{ seconds }}</span>
-                        <span class="">s</span>
+                        <span class="timeUnit">s</span>
                     </div>
                     <button @click="openFullscreen">Open fullscreen</button>
                     <button @click="closeFullscreen">Close fullscreen</button>
                 </div>
+                <div class="countDown" v-else>
+                    <div @click="handleEditable">
+                        <span class="" tabindex="0">{{ timDigits[0] }}</span>
+                        <span class="" tabindex="0">{{ timDigits[1] }}</span>
+                        <span class="timeUnit">h</span>
+                        <span class="" tabindex="0">{{ timDigits[2] }}</span>
+                        <span class="" tabindex="0">{{ timDigits[3] }}</span>
+                        <span class="timeUnit">m</span>
+                        <span class="" tabindex="0">{{ timDigits[4] }}</span>
+                        <span class="" tabindex="0">{{ timDigits[5] }}</span>
+                        <span class="timeUnit cursor">s</span>
+                    </div> 
+                    <button @click="openFullscreen">Open fullscreen</button>
+                    <button @click="closeFullscreen">Close fullscreen</button>
+                </div>
                 <input 
-                    v-else
                     type="number" 
                     name="timer" 
-                    id="timer" 
+                    id="counterForm" 
                     :placeholder="timer" 
                     v-on:keyup.enter="setTime"
                     @blur="setTime"
+                    @keyup="changeTime"
+                    min="0"
                     maxlength = "6"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                 >
@@ -74,6 +90,7 @@
             minutes: 0,
             seconds: 0,
             interval: '',
+            timDigits: '000000',
         },
         computed: {
             timer: function() {
@@ -92,9 +109,18 @@
                 if (this.seconds > 59) this.seconds = 59;
                 this.isEditable = false;
             },
+            changeTime: function(e) {
+                while (e.target.value.length < 6) {
+                    e.target.value = `0${e.target.value}`;
+                }
+                this.timDigits = e.target.value;
+                e.target.value = Number(e.target.value);
+            },
             handleEditable: function() { 
                 this.isEditable = !this.isEditable;
                 this.clearCountDown();
+                document.getElementById('counterForm').value = '';
+                document.getElementById('counterForm').focus();
             },
             openFullscreen: function() {
                 var elem = document.documentElement;

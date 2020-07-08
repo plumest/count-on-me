@@ -113,19 +113,25 @@
     align-items: center;
 }
 
-#timer {
-    text-align: center;
-    font-size: 15vw;
+#counterForm {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -2;
 }
 
-#timer span {
-    font-size: 10vw;
-    text-align: center;
+.timeUnit {
+    margin-right: .75rem;
 }
 
-#timer input {
-    font-size: 10vw;
-    text-align: right;
+.cursor {
+    padding-left: .15rem;
+    border-left: 1px solid;
+}
+
+.countDown div span {
+    font-size: 4rem;
 }
 
 @keyframes timerAnimation {
