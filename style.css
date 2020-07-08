@@ -46,7 +46,14 @@
 
 .navbar-brand {
     margin: 1%;
+    max-height: 100%;
     text-decoration: none;
+}
+
+.navbar-brand img {
+    margin: .5rem 0;
+    max-height: 90%;
+    max-width: 150px;
 }
 
 .navbar-brand h1 {
@@ -109,6 +116,16 @@
 #timer {
     text-align: center;
     font-size: 15vw;
+}
+
+#timer span {
+    font-size: 10vw;
+    text-align: center;
+}
+
+#timer input {
+    font-size: 10vw;
+    text-align: right;
 }
 
 @keyframes timerAnimation {

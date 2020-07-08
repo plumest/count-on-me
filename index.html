@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Count on Me</title>
+    <title>Count on Me</title> 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,8 +12,7 @@
         <header id="header">
             <nav class="navbar navbar-light bg-white navbar-expand-md fixed-top">
                 <a class="navbar-brand isRed" href="#">
-                    <h1><span class="isRed">TEDx</span><span>KasetsartU</span></h1>
-                    <p><span class="isRed subTitle">x</span> = independently organized TED event</p>
+                    <img src="./TEDxKasetsartU_Logo_Black.png" alt="TEDxKasetsartU">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +37,7 @@
         
         <main id="main">
             <section id="showtime">
-                <div class="" v-if="!isEditable">
+                <div class="countDown" v-if="!isEditable">
                     <div @click="handleEditable">
                         <span class="" tabindex="0" v-if="hours">{{ hours }}</span>
                         <span class="" v-if="hours">h</span>
