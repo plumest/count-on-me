@@ -151,8 +151,15 @@
             startCountDown: function() {
                 this.interval = setInterval(() => {
                     if (this.seconds > 0) this.seconds--;
-                    else if (this.minutes > 0) this.minutes--;
-                    else if (this.hours > 0) this.hours--;
+                    else if (this.minutes > 0) {
+                        this.minutes--;
+                        this.seconds = 59;
+                    }
+                    else if (this.hours > 0) {
+                        this.hours--;
+                        this.minutes = 59;
+                        this.seconds = 59;
+                    }
                     if (!this.hours && !this.minutes && !this.seconds) this.clearCountDown();
                 }, 1000);
             },
