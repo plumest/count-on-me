@@ -21,12 +21,12 @@
         <main id="main">
             <section id="showtime">
                 <div class="countDown" v-if="!isEditable">
-                    <div @click="handleEditable">
+                    <div @click="handleEditable" :class="{timeless: ((!hours) && (!minutes) && (seconds <= 30) && isCounting)}">
                         <span class="" tabindex="0" v-if="hours">{{ hours }}</span>
                         <span class="timeUnit" v-if="hours">h</span>
                         <span class="" tabindex="0" v-if="minutes">{{ minutes }}</span>
-                        <span class="timeUnit" v-if="minutes">m</span>
-                        <span class="" tabindex="0">{{ seconds }}</span>
+                        <span class="timeUnit" v-if="minutes">m</span> 
+                        <span class="" tabindex="0"> {{ seconds }}</span>
                         <span class="timeUnit">s</span>
                     </div>
                     <div class="btn-container">
@@ -43,15 +43,15 @@
                 </div>
                 <div class="countDown" v-else>
                     <div @click="handleEditable">
-                        <span class="" tabindex="0">{{ timDigits[0] }}</span>
-                        <span class="" tabindex="0">{{ timDigits[1] }}</span>
-                        <span class="timeUnit">h</span>
-                        <span class="" tabindex="0">{{ timDigits[2] }}</span>
-                        <span class="" tabindex="0">{{ timDigits[3] }}</span>
-                        <span class="timeUnit">m</span>
-                        <span class="" tabindex="0">{{ timDigits[4] }}</span>
-                        <span class="" tabindex="0">{{ timDigits[5] }}</span>
-                        <span class="timeUnit cursor">s</span>
+                        <span :class="{toFill: inputLength < 6}" tabindex="0">{{ timDigits[0] }}</span>
+                        <span :class="{toFill: inputLength < 5}" tabindex="0">{{ timDigits[1] }}</span>
+                        <span class="timeUnit" :class="{toFill: inputLength < 5}">h</span>
+                        <span :class="{toFill: inputLength < 4}" tabindex="0">{{ timDigits[2] }}</span>
+                        <span :class="{toFill: inputLength < 3}" tabindex="0">{{ timDigits[3] }}</span>
+                        <span class="timeUnit" :class="{toFill: inputLength < 3}">m</span>
+                        <span :class="{toFill: inputLength < 2}" tabindex="0">{{ timDigits[4] }}</span>
+                        <span :class="{toFill: inputLength < 1}" tabindex="0">{{ timDigits[5] }}</span>
+                        <span class="timeUnit cursor" :class="{toFill: inputLength < 1}">s</span>
                     </div>
                     <div class="btn-container">
                         <div class="btn-left">
@@ -90,6 +90,7 @@
             isEditable: false,
             isCounting: false,
             isFullScreen: false,
+            isActive: false,
             hours: 0,
             minutes: 0,
             seconds: 0,
@@ -99,6 +100,10 @@
         computed: {
             timer: function() {
                 return `${this.hours}h ${this.minutes}m ${this.seconds}s`;
+            },
+            inputLength: function() {
+                if (Number(this.timDigits) === 0) return 0;
+                return String(Number(this.timDigits)).length
             }
         },
         methods: {

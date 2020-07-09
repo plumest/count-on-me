@@ -136,6 +136,10 @@
     text-align: center;
 }
 
+.toFill {
+    color: #999;
+}
+
 .btn-container {
     display: flex;
     justify-content: space-between;
@@ -267,6 +271,24 @@ button:active {
 }
 
 @-webkit-keyframes timerAnimation {
+    /* 0% { transform: scale(1) }
+    50% { transform: scale(1.5) }
+    100% { transform: scale(1) } */
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: aqua;
+    }
+}
+
+@-moz-keyframes timerAnimation {
+    0% { transform: scale(1) }
+    50% { transform: scale(1.5) }
+    100% { transform: scale(1) }
+}
+
+@-o-keyframes timerAnimation {
     0% { transform: scale(1) }
     50% { transform: scale(1.5) }
     100% { transform: scale(1) }
@@ -275,4 +297,15 @@ button:active {
 .timerAnimation {
     animation: timerAnimation 2s infinite;
     -webkit-animation: timerAnimation 2s infinite;
+}
+
+.timeless {
+    animation: timerAnimation 2s infinite;
+    -webkit-animation: timerAnimation 2s infinite;
+    -moz-animation: timerAnimation 2s infinite;
+    -o-animation: timerAnimation 2s infinite;
+}
+
+.timeless span {
+    color: var(--red);
 }
