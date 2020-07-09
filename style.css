@@ -9,6 +9,8 @@
     margin: 0;
     padding: 0;
     color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }
 
 .isRed {
@@ -130,8 +132,124 @@
     border-left: 1px solid;
 }
 
-.countDown div span {
-    font-size: 4rem;
+.countDown {
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #aaaaaa;
+}
+
+.btn {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-left: 1rem;
+    padding: .5rem 1rem;
+    border: 1px solid #bbb;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: var(--white);
+    background-color: rgb(252, 82, 72);
+}
+
+.btn-primary:hover {
+    background-color: rgb(233, 69, 60);
+}
+
+.btn-secondary {
+    color: #444;
+    background-color: #eee;
+}
+
+.btn-secondary:hover {
+    background-color: #ddd;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+}
+
+.btn-icon:hover {
+    cursor: pointer;
+}
+
+.btn-icon i {
+    font-size: 1rem;
+    color: #666
+}
+
+@media only screen and (max-width: 576px) {
+    .countDown {
+        width: 100vw;
+        max-width: 100vw;
+    }
+
+    .countDown div span {
+        font-size: 2.2rem;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .countDown {
+        width: 90vw;
+        max-width: 90vw;
+    }
+
+    .countDown div span {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .countDown {
+        width: 90vw;
+        max-width: 90vw;
+    }
+
+    .countDown div span {
+        font-size: 6rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .countDown {
+        width: 90vw;
+        max-width: 90vw;
+    }
+
+    .countDown div span {
+        font-size: 7rem;
+    }
+
+    .timeUnit {
+        margin-right: 1.5rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .countDown {
+        width: 80vw;
+        max-width: 80vw;
+    }
+
+    .countDown div span {
+        font-size: 8rem;
+    }
+
+    .timeUnit {
+        margin-right: 2rem;
+    }
 }
 
 @keyframes timerAnimation {
