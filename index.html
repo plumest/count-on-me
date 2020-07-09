@@ -26,8 +26,9 @@
                         <span class="timeUnit" v-if="hours">h</span>
                         <span class="" tabindex="0" v-if="minutes">{{ minutes }}</span>
                         <span class="timeUnit" v-if="minutes">m</span> 
-                        <span class="" tabindex="0"> {{ seconds }}</span>
-                        <span class="timeUnit">s</span>
+                        <span class="" tabindex="0" v-if="!isTimeUp"> {{ seconds }}</span>
+                        <span class="timeUnit" v-if="!isTimeUp">s</span>
+                        <span class="timeout" v-if="isTimeUp">Time out!!</span>
                     </div>
                     <div class="btn-container">
                         <div class="btn-left">
@@ -91,6 +92,7 @@
             isCounting: false,
             isFullScreen: false,
             isActive: false,
+            isTimeUp: false,
             hours: 0,
             minutes: 0,
             seconds: 0,
@@ -114,6 +116,7 @@
                 if (this.minutes > 59) this.minutes = 59;
                 if (this.seconds > 59) this.seconds = 59;
                 this.isEditable = false;
+                this.isTimeUp = false;
             },
             changeTime: function(e) {
                 while (e.target.value.length < 6) {
@@ -167,7 +170,10 @@
                         this.minutes = 59;
                         this.seconds = 59;
                     }
-                    if (!this.hours && !this.minutes && !this.seconds) this.clearCountDown();
+                    if (!this.hours && !this.minutes && !this.seconds) {
+                        this.isTimeUp = true;
+                        this.clearCountDown();
+                    };
                 }, 1000);
             },
             clearCountDown: function() {

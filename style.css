@@ -180,6 +180,7 @@
 }
 
 .btn-icon {
+    margin-right: 1rem;
     background: none;
     border: none;
 }
@@ -203,8 +204,8 @@ button:active {
 
 @media only screen and (max-width: 576px) {
     .countDown {
-        width: 100vw;
-        max-width: 100vw;
+        width: 92vw;
+        max-width: 92vw;
     }
 
     .countDown div span {
@@ -271,15 +272,9 @@ button:active {
 }
 
 @-webkit-keyframes timerAnimation {
-    /* 0% { transform: scale(1) }
+    0% { transform: scale(1) }
     50% { transform: scale(1.5) }
-    100% { transform: scale(1) } */
-    from {
-        background-color: white;
-    }
-    to {
-        background-color: aqua;
-    }
+    100% { transform: scale(1) }
 }
 
 @-moz-keyframes timerAnimation {
@@ -308,4 +303,9 @@ button:active {
 
 .timeless span {
     color: var(--red);
+}
+
+.timeout {
+    color: var(--red);
+    text-transform: uppercase;
 }
