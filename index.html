@@ -36,8 +36,8 @@
                             <button class="btn btn-secondary" @click="setTime">Reset</button>
                         </div>
                         <div class="btn-right">
-                            <button class="btn-icon" @click="openFullscreen"><i class="fas fa-expand"></i></button>
-                            <button class="btn-icon" @click="closeFullscreen"><i class="fas fa-compress"></i></button>
+                            <button class="btn-icon" @click="openFullscreen" v-if="!isFullScreen"><i class="fas fa-expand"></i></button>
+                            <button class="btn-icon" @click="closeFullscreen" @keyup.esc="closeFullscreen" v-else><i class="fas fa-compress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                             <button class="btn btn-secondary" @click="setTime">Reset</button>
                         </div>
                         <div class="btn-right">
-                            <button class="btn-icon" @click="openFullscreen"><i class="fas fa-expand"></i></button>
-                            <button class="btn-icon" @click="closeFullscreen"><i class="fas fa-compress"></i></button>
+                            <button class="btn-icon" @click="openFullscreen" v-if="!isFullScreen"><i class="fas fa-expand"></i></button>
+                            <button class="btn-icon" @click="closeFullscreen" @keyup.esc="closeFullscreen" v-else><i class="fas fa-compress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     name="timer" 
                     id="counterForm" 
                     :placeholder="timer" 
-                    v-on:keyup.enter="setTime"
+                    @keyup.enter="setTime"
                     @blur="setTime"
                     @keyup="changeTime"
                     min="0"
@@ -89,6 +89,7 @@
         data: {
             isEditable: false,
             isCounting: false,
+            isFullScreen: false,
             hours: 0,
             minutes: 0,
             seconds: 0,
@@ -134,10 +135,9 @@
                 } else if (elem.msRequestFullscreen) { 
                     elem.msRequestFullscreen();
                 }
+                this.isFullScreen = true;
             },
             closeFullscreen: function() {
-                var elem = document.documentElement;
-
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                 } else if (document.mozCancelFullScreen) { 
@@ -147,6 +147,7 @@
                 } else if (document.msExitFullscreen) { 
                     document.msExitFullscreen();
                 }
+                this.isFullScreen = false;
             },
             startCountDown: function() {
                 this.isCounting = true;
